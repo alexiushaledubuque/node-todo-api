@@ -8,25 +8,37 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
 	}
 	console.log('Connected to MongoDB server')
 
-	// db.collection('Todos').find({
-	// 	_id: new ObjectID("5907eff99459ac5ff513a3d8")
-	// }).toArray().then((docs) => {
-	// 	console.log('Todos')
-	// 	console.log(JSON.stringify(docs, null, 4))
-	// }, (err) => {
-	// 	console.log('Unable to fetch Todos: ', err)
+	// findOneAndUpdate - similar to findOneAndDelete
+	// db.collection('Todos').findOneAndUpdate({
+	// 	_id: new ObjectID("5908afb5cc5ce4e7c16a238d")
+	// }, {
+	// 	$set: {				// MUST USE MONGODB UPDATE OPERATORS!!!
+	// 		completed: true
+	// 	}
+	// }, {
+	// 	returnOriginal: false
+	// }).then((result) => {
+	// 	console.log(result)
 	// })
 
-	// db.collection('Todos').find().count().then((count) => {
-	// 	console.log(`Todos count: ${count}`)
-	// }, (err) => {
-	// 	console.log('Unable to fetch Todos: ', err)
-	// })
+	// CHALLENGE
+	// update a record in Users (name) & increment (age) - use $inc from docs
+	// findOneAndUpdate takes 3 objects(filter, update, options)
 
-	db.collection('Users').find({name: 'Alexius'}).toArray().then((docs) => {
-		console.log(`Users found: ${JSON.stringify(docs, null, 4)}`)
-	}, (err) => {
-		console.log('Unable to fetch Users: ', err)
+	db.collection('Users').findOneAndUpdate({
+		_id: new ObjectID("5907f1c97b9750600b2ce6b0") // filter object
+	}, {
+		$set: {									// update object with 2 items to update (name & age)
+			name: 'Alexius'
+		},
+		$inc: {
+			age: 1
+		}	
+	}, {
+		returnOriginal: false 		// options - return new document
+	}).then((result) => {
+		console.log(JSON.stringify(result, null, 4))
 	})
+
 	// db.close()
 })
