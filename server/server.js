@@ -9,6 +9,7 @@ const { Todo } = require('./models/todo')
 const { User } = require('./models/user')
 
 const app = express()
+const port = process.env.PORT || 3000
 
 // configure middleware
 app.use(bodyParser.json())
@@ -48,8 +49,10 @@ app.get('/todos/:id', (req, res) => {
 		// VALID - QUERY using findById
 			// success
 				// if todo - send it back
+			// failed
 				// if no todo - send back a 404 with an empty body
-			// error - 400 send back empty body back
+			// error 
+			  // 400 send back empty body back
 
 		Todo.findById(id).then((todo) => {
 			if (!todo) {
@@ -60,10 +63,9 @@ app.get('/todos/:id', (req, res) => {
 			res.status(400).send()
 		})
 })
-
-app.listen(3000, () => {
-	console.log('Started on port 3000')
-})
+port, () => {
+	console.log(`Started on port ${port}`)
+}
 
 module.exports = {
 	app
