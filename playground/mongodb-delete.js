@@ -25,15 +25,17 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
 		// })
 
 	// CHALLENGE
-	// deleteMany to remove duplicates (name: 'Alexius')
-	db.collection('Users').deleteMany({name: 'Alexius'}).then((result) => {
-		console.log(result)
-	})
+	// deleteMany to remove duplicates (name: 'Richard')
+	// db.collection('Users').deleteMany({name: 'Richard'}).then((result) => {
+	// 	console.log(result)
+	// })
 
-	// findAndDelete 1 document by _id ("5907f368f014a16019d75863")
-	//_id: new ObjectID("5907eff99459ac5ff513a3d8"
-	db.collection('Users').findOneAndDelete({_id: new ObjectID("5907f368f014a16019d75863")}).then((result) => {
-		console.log(result)
+	// findAndDelete 1 document by _id ("59330725f6d635447e4b7ad0")
+	// _id: new ObjectID("59330725f6d635447e4b7ad0")
+	db.collection('Users').findOneAndDelete({
+		_id: new ObjectID("59330725f6d635447e4b7ad0")
+	}).then((result) => {
+		console.log(JSON.stringify(result, null, 4))
 	})
 
 	// db.close()
