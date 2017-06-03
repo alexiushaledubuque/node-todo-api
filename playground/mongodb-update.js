@@ -10,7 +10,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
 
 	// findOneAndUpdate - similar to findOneAndDelete
 	// db.collection('Todos').findOneAndUpdate({
-	// 	_id: new ObjectID("5908afb5cc5ce4e7c16a238d")
+	// 	_id: new ObjectID("5933066af6d635447e4b7a94")
 	// }, {
 	// 	$set: {				// MUST USE MONGODB UPDATE OPERATORS!!!
 	// 		completed: true
@@ -26,13 +26,13 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
 	// findOneAndUpdate takes 3 objects(filter, update, options)
 
 	db.collection('Users').findOneAndUpdate({
-		_id: new ObjectID("5907f1c97b9750600b2ce6b0") // filter object
+		_id: new ObjectID("5933072af6d635447e4b7ad3") // filter object
 	}, {
 		$set: {									// update object with 2 items to update (name & age)
 			name: 'Alexius'
 		},
 		$inc: {
-			age: 1
+			age: -1
 		}	
 	}, {
 		returnOriginal: false 		// options - return new document
