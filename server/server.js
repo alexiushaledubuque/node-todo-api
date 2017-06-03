@@ -69,6 +69,7 @@ app.listen(port, () => {
 	console.log(`Started on port ${port}`)
 })
 
+// exported for testing purposes
 module.exports = {
 	app
 }

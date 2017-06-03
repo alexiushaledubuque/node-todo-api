@@ -78,7 +78,7 @@ describe('GET /todos', () => {
 	})
 })
 
-xdescribe('GET /todos/:id', () => {
+describe('GET /todos/:id', () => {
 	it('should return todo doc', (done) => { // async test so done is specified
 		request(app)
 			.get(`/todos/${todos[0]._id.toHexString()}`) // must pass strings in get request
