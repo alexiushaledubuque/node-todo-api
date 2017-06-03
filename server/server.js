@@ -11,7 +11,7 @@ const { User } = require('./models/user')
 const app = express()
 const port = process.env.PORT || 3000
 
-// configure middleware
+// configure middleware - getting called as a function
 app.use(bodyParser.json())
 
 // POST - add new todos
@@ -21,7 +21,8 @@ app.post('/todos', (req, res) => {
 		text: req.body.text
 	})
 
-	todo.save().then((doc) => {
+	// save todo to the collection
+	todo.save().then((doc) => { 
 		res.send(doc)
 	}, (e) => {
 		res.status(400).send(e)
@@ -63,9 +64,10 @@ app.get('/todos/:id', (req, res) => {
 			res.status(400).send()
 		})
 })
-port, () => {
+
+app.listen(port, () => {
 	console.log(`Started on port ${port}`)
-}
+})
 
 module.exports = {
 	app
