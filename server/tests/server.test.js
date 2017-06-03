@@ -13,6 +13,7 @@ const todos = [{
 	text: 'Second test todo'
 }]
 
+// Testing lifecycle method - empty the database
 beforeEach((done) => {
 	Todo.remove({}).then(() => {
 		return Todo.insertMany(todos)
@@ -20,7 +21,7 @@ beforeEach((done) => {
 })
 
 describe('POST /todos', () => {
-	it('should create a new todo', (done) => {
+	it('should create a new todo', (done) => { // specify (done) for async functions
 		var text = 'Test todo text'
 
 		request(app)
@@ -30,7 +31,7 @@ describe('POST /todos', () => {
 			.expect((res) => {
 				expect(res.body.text).toBe(text)
 			})
-			.end((err, res) => {
+			.end((err, res) => { // .end wraps things up
 				if (err) {
 					return done(err)
 				}
@@ -77,7 +78,7 @@ describe('GET /todos', () => {
 	})
 })
 
-describe('GET /todos/:id', () => {
+xdescribe('GET /todos/:id', () => {
 	it('should return todo doc', (done) => { // async test so done is specified
 		request(app)
 			.get(`/todos/${todos[0]._id.toHexString()}`) // must pass strings in get request
