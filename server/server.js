@@ -69,6 +69,34 @@ app.get('/todos/:id', (req, res) => {
 		})
 })
 
+//CHALLENGE - ADD A DELETE END POINT
+app.delete('/todos/:id', (req, res) => {
+	// get the id
+	var id = req.params.id;
+	// validate the id
+	// not valid, return 404 
+	if (!ObjectID.isValid(id)) {	
+		return res.status(404).send()
+	}
+	
+  // remove todo by id
+  Todo.findByIdAndRemove(id).then((todo) => {
+		if (!todo) {
+			// if no doc send 404
+				return res.status(404).send()
+			}
+			// success
+  		// if no doc send 404
+  		// if doc send back with a 200
+			res.status(200).send({todo})
+		}).catch((e) => {
+			// error - send back 400 with empty body
+			res.status(400).send()
+		})
+})
+  	
+  	
+
 app.listen(port, () => {
 	console.log(`Started up at port ${port}`)
 })
