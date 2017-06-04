@@ -38,22 +38,26 @@ app.get('/todos', (req, res) => {
 })
 
 // GET /todos/1234324
+// url parameters ':<name>'
 app.get('/todos/:id', (req, res) => {
+
 	var id = req.params.id;
 	
 // CHALLENGE - 
 	// VALIDATE ID using isValid
 	if (!ObjectID.isValid(id)) {	// Validate IDverify if id is valid or not before query
-		return res.status(404).send()
+		return res.status(404).send() // return 404 & empty body
 	} 
-		// NOT VALID - respond with 404 & send back empty send
-		// VALID - QUERY using findById
-			// success
-				// if todo - send it back
-			// failed
-				// if no todo - send back a 404 with an empty body
-			// error 
-			  // 400 send back empty body back
+	
+	// 	// NOT VALID - respond with 404 & send back empty send
+	// 	// VALID - QUERY using findById
+	// 		// success
+	// 			// if todo - send it back
+	// 		// failed
+	// 			// if no todo - send back a 404 with an empty body
+	// 		// error 
+	// 		  // 400 send back empty body back
+	// Test in Postman passing a valid id from todos in robomongo
 
 		Todo.findById(id).then((todo) => {
 			if (!todo) {
